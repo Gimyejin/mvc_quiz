@@ -8,6 +8,11 @@
 </head>
 <body>
 index.jsp<br>
+<form action="success">
+	<input type="text" placeholder="id" name="id"><br>
+	<input type="password" placeholder="password" name="pwd">
+	<input type="submit" value="login">
+</form>
 <a href="insert">회원가입</a>
 <a href="list">모든 회원보기</a>
 </body>

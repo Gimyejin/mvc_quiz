@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,12 +17,12 @@
 			<th>name</th>
 		</tr>
 		<c:choose>
-			<c:when test="${list != null }">
+			<c:when test="${list.size() != 0 }">
 				<c:forEach var="dto" items="${list }">
 					<tr>
-						<td>${dto.id }</td>
+						<td>${dto.id }</td><!-- ${list[0].id}해도 됨 -->
 						<td>${dto.pwd }</td>
-						<td>${dto.name }</td>
+						<td><a href="memberPage?id=${dto.id}&pwd=${dto.pwd }&name=${dto.name }">${dto.name }</a></td>
 					</tr>
 				</c:forEach>
 			</c:when>
@@ -33,7 +34,7 @@
 			</c:otherwise>
 		</c:choose>
 		<tr>
-			<td colspan="3"><a href="index">index 이동</a></td>
+			<td colspan="3"><a href="${contextPath }/index">index 이동</a></td>
 		</tr>
 	</table>
 </body>

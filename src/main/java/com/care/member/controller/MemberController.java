@@ -16,13 +16,19 @@ import com.care.member.dto.MemberDTO;
 import com.care.member.service.MemberService;
 
 @Controller
+//@RequestMapping("member")//이렇게 해주면 아래에 것들은 그냥 써도 됨 
 public class MemberController {
 	@Autowired
 	MemberService ms;
 
-	@RequestMapping("index")
+	@GetMapping("index")
 	public String index() {
 		return "member/index";
+	}
+	@RequestMapping("/success")
+	public String postIndex(Model model,HttpServletRequest request) {
+		ms.check(request.getParameter("id"),request.getParameter("pwd"),model);
+		return "member/success";
 	}
 
 	@GetMapping("list")
@@ -43,8 +49,23 @@ public class MemberController {
 		String name = request.getParameter("name");
 		dto.setId(id);dto.setPwd(pwd);dto.setName(name);
 		ms.insert(dto);
-		return "member/index";
+		return "redirect:/index";
+	}
+	//한방에 모든 값을 넣어줄수도 있음
+	//전에 했던 jsp:setproperties var="dao" value="*" 했던 것처럼
+	@PostMapping("insert2")
+	public String postInsert2(MemberDTO dto) {
+		ms.insert(dto);
+		return "redirect:/index";
 	}
 	
-	
+	@RequestMapping("memberPage")
+	public String memberPage(HttpServletRequest request,MemberDTO dto,Model model) {
+		System.out.println("here");
+		dto.setId(request.getParameter("id"));
+		dto.setPwd(request.getParameter("pwd"));
+		dto.setName(request.getParameter("name"));
+		model.addAttribute("member",dto);
+		return "member/memberPage";
+	}
 }
