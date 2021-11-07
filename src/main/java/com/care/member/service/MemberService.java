@@ -26,5 +26,10 @@ public class MemberService {
 		MemberChk chk= dao.check(id,pwd,model);
 		model.addAttribute("check",chk);
 	}
+
+	public String selectName(String id) {
+		String name = dao.selectName(id);
+		return name;
+	}
 	
 }

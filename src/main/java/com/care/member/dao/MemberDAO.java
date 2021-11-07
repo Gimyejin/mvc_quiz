@@ -38,4 +38,12 @@ public class MemberDAO {
 		}
 		return chk;
 	}
+	public String selectName(String id) {
+		for(MemberDTO member : list) {
+			if(member.getId().equals(id)) {
+				return member.getName();
+			}
+		}
+		return null;
+	}
 }

@@ -18,7 +18,9 @@
 		<c:when test="${check.chk == 1}">
 			<img src="<c:url value='/resources/coffee2.png'/>" width="100px"
 				height="100px">
-			<h1>${check.name }님환영합니다.</h1>
+			<h1>${sessionScope.name }님 환영합니다.</h1>
+			<a href="logout">로그아웃</a><br>
+			<a href="index">로그인 페이지이동</a><br>
 		</c:when>
 		<c:otherwise>
 			<script type="text/javascript">
